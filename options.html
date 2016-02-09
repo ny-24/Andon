@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Andon Option</title>
+    <link rel="stylesheet" href="css/contentscript.css">
+    <link rel="stylesheet" href="css/fontello.css">
+    <style media="screen">
+    /*
+    YUI 3.18.1 (build f7e7bcb)
+    Copyright 2014 Yahoo! Inc. All rights reserved.
+    Licensed under the BSD License.
+    http://yuilibrary.com/license/
+    */
+
+    html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+    html{height: 100%}
+
+    body {
+      min-height: 100%;
+      background: #eee;
+      font-family: Verdana, Arial;
+      font-size: 14px;
+    }
+
+    body > #container {
+      height: 100%;
+    }
+
+    #container{
+      min-height: 100%;
+      height: 100%;
+      width: 900px;
+      margin: 0 auto;
+    }
+
+    #header{
+      height: 60px;
+      background-color: #31B0AA;
+      line-height: 60px;
+      margin-bottom:5px;
+    }
+
+    #header img{
+      padding-top: 7px;
+      padding-left: 7px;
+      float:left;
+    }
+
+    #header span{
+      color: #FFF;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    #contents{
+      margin-bottom:15px;
+      overflow: hidden;
+    }
+
+    #item-list li>div{
+      padding: 8px 0;
+      background: #ddd;
+      height: 32px;
+      border-bottom: solid 1px #ccc;
+      padding-left: 10px;
+      -webkit-transition: background-color 0.1s linear;
+    }
+
+    #item-list li:last>div{
+      background: red;
+    }
+
+    #item-list li>div:hover{
+      background: #ccc;
+    }
+
+    #item-list li>div>input{
+      display:block;
+      float:left;
+      padding: 4px 8px;
+      height: 22px;
+      margin-left: 10px;
+      margin-bottom:5px;
+      border:solid 1px #ccc;
+      -webkit-border-radius: 3px;
+    }
+
+    .span1{
+      width: 80px;
+    }
+
+    .span2{
+      width: 248px;
+    }
+
+    .span3{
+      width: 266px;
+    }
+
+    #item-list li>div>button.delete-button{
+      margin: 4px 0px 0px 10px;
+      height: 24px;
+      -webkit-border-radius: 3px;
+      background: #C23329;
+      border: 1px solid #C23329;
+      color: #fff;
+      width:70px;
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      -webkit-transition: background-color 0.2s linear;
+    }
+
+    #item-list li>div>button.delete-button:hover{
+      background:red;
+    }
+
+    #item-list li:last-child>div{
+      border-bottom:none;
+    }
+
+    #menu {
+      overflow: hidden;
+      border: solid 3px #ddd;
+      height: 42px;
+    }
+
+    #menu ul>li{
+      float:left;
+      width: 100px;
+      margin-right: 10px;
+    }
+
+    #menu ul>li>button{
+      font-family: 'fontello';
+      margin: 5px;
+      height: 32px;
+      -webkit-border-radius: 3px;
+      color: #fff;
+      width:100px;
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      -webkit-transition: background-color 0.2s linear;
+    }
+
+    #latest-updated{
+      float:right;
+      margin-right:10px;
+      line-height: 42px;
+      font-size:14px;
+      color:#888;
+    }
+
+    #latest-updated-time{
+      font-size:16px;
+      color:#666;
+    }
+
+    #add-button{
+      background: #30589C;
+      border: 1px solid #30589C;
+    }
+
+    #add-button:hover{
+     background: #4E80D0;
+    }
+
+    #save-button{
+      background: #20826B;
+      border: 1px solid #20826B;
+    }
+
+    #save-button:hover{
+     background: #30A58A;
+    }
+
+    #file{
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+      height: 30px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      margin: 5px;
+      border: 1px solid #999;
+      background-color: #eee;
+      -webkit-border-radius: 3px;
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      -webkit-transition: background-color 0.2s linear;
+      color: #fff;
+      background: #0A4254;
+      border: 1px solid #0A4254;
+    }
+    #file:hover{
+      background: #117291;
+    }
+
+    #export-file-button{
+      background: #0A4254;
+      border: 1px solid #0A4254;
+    }
+
+    #export-file-button:hover{
+      background: #117291;
+    }
+
+    #files{
+      opacity: 0;
+      filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0;
+      font-size: 100px;
+      cursor: pointer;
+    }
+
+    #menu>ul>li>button>i,#menu>ul>li>span>i{
+      font-family: 'fontello';
+      font-size: 16px;
+      font-style: normal;
+      display: inline;
+      padding: 0 2px 2px 0;
+    }
+
+    span.tooltip-regexp{
+      float:left;
+      padding: 5px 0;
+      width:12px;
+    }
+
+    span.tooltip-regexp a{
+      display: inline;
+      position: relative;
+    }
+
+    span.tooltip-regexp a:hover:before{
+      border-radius: 3px;
+      border-width: 12px 6px 0 6px;
+      left: -10px;
+      bottom: 30px;
+      font-size:12px;
+      width:250px;
+      background: #444;
+      content: attr(title);
+      color:#FFF;
+      padding:10px;
+      position: absolute;
+    }
+
+    span.tooltip-regexp a:hover:after{
+      border: solid;
+      border-color: #444 transparent;
+      border-width: 12px 6px 0 6px;
+      content: "";
+      left: 0px;
+      bottom: 18px;
+      position: absolute;
+    }
+
+    </style>
+  </head>
+  <body>
+  <div id="container">
+    <div id="header">
+      <h1><img src="images/icon048_on.png" height="48" width="48">
+      <span>Andon Option</span>
+      </h1>
+    </div>
+    <div id="main">
+      <div id="contents">
+
+        <div id="menu">
+          <ul>
+            <li>
+              <span id="file">
+                <i class="icon-doc-text"></i>Import
+                <input type="file" id="files" name="files" class="button"/>
+              </span>
+              <output id="list"></output>
+            </li>
+            <li><button id="export-file-button" class="button"><i class="icon-doc-text"></i>Export</button></li>
+            <li><button id="add-button" class="button"><i class="icon-plus-circled"></i>Add</button></li>
+            <li><button id="save-button" class="button"><i class="icon-download"></i>Save</button></li>
+
+          </ul>
+          <span id="latest-updated">Latest updated time:<span id="latest-updated-time"><span></span>
+        </div>
+
+        <ul id="item-list">
+          <li>
+            <div>
+              <span class="tooltip-regexp"><a href="#" title="Checks when using a regular expression"><input type="checkbox" class="use-regexp tooltip-regexp"></a></span>
+              <input type="text" class="span2 url-pattern" placeholder="url pattern" value="">
+              <input type="text" class="span1 background-color jscolor" placeholder="bg color" value="000000">
+              <input type="text" class="span3 text" placeholder="text" value="">
+              <input type="text" class="span1 text-color jscolor" placeholder="text color" value="FFFFFF">
+              <button class="delete-button button" disabled>Delete</button>
+            </div>
+          </li>
+        </ul>
+
+      </div><!-- contents -->
+    </div><!-- main -->
+  </div><!-- container -->
+
+  <div class="andon-view" style="display: none;">
+    <span class="andon-text"></span>
+  </div>
+
+  <script src="js/jquery-2.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jscolor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/localstorage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/andonLocalstorage.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/chromeApi.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/andonEventDispatcher.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/options.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+div.andon-view{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  z-index: 10001;
+  left: 0px;
+  bottom:0px;
+  background-color: #000000;
+  padding: 12px 0;
+  opacity: 0.9;
+  z-index: 10001;
+}
+
+div.andon-view span{
+  color: #ffffff;
+  font-family:  Verdana, Arial;
+  line-height: 1.3em;
+  letter-spacing: 0.08em;
+  font-size: 20px;
+}
