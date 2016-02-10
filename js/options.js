@@ -31,6 +31,14 @@ class Option {
     $('#export-file-button').on(('click'), (e) => {
       this.exportOptionFile(e);
     });
+
+    $('#item-list').sortable({
+      cursor: 'move',
+      opacity: 0.7,
+      placeholder: 'ui-state-highlight',
+      axis: 'y'
+    });
+    $('#item-list').disableSelection();
   }
 
   addItem_() {
