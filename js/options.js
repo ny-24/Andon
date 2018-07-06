@@ -10,35 +10,35 @@ class Option {
   }
 
   addEvents() {
-    $('#add-button').on('click', (e) => {
+    $("#add-button").on("click", (e) => {
       this.addItem_();
     });
-    $('#save-button').on('click', (e) => {
+    $("#save-button").on("click", (e) => {
       this.save_();
     });
-    $('#item-list').on('click', 'button.delete-button', (e) => {
+    $("#item-list").on("click", "button.delete-button", (e) => {
       this.removeItem_(e.target);
     });
-    $('#item-list').on('click keyup keyup change', 'input', (e) => {
+    $("#item-list").on("click keyup keyup change", "input", (e) => {
       this.showColorPreview_(e.target);
     });
-    $('#item-list').on('blur', 'input', (e) => {
+    $("#item-list").on("blur", "input", (e) => {
       this.hideColorPreview_(e.target);
     });
-    $('#menu').on('change', '#files', (e) => {
+    $("#menu").on("change", "#files", (e) => {
       this.importOptionFile(e.target.files);
     });
-    $('#export-file-button').on(('click'), (e) => {
+    $("#export-file-button").on(("click"), (e) => {
       this.exportOptionFile(e);
     });
 
-    $('#item-list').sortable({
-      cursor: 'move',
+    $("#item-list").sortable({
+      cursor: "move",
       opacity: 0.7,
-      placeholder: 'ui-state-highlight',
-      axis: 'y'
+      placeholder: "ui-state-highlight",
+      axis: "y"
     });
-    $('#item-list').disableSelection();
+    $("#item-list").disableSelection();
   }
 
   addItem_() {
@@ -102,7 +102,7 @@ class OptionModel {
   loadFile(files, callback) {
     let file = files[0];
     if (!file) return;
-    if (!file.type.indexOf('json') < 0 ) {
+    if (!file.type.indexOf("json") < 0 ) {
       if (callback) callback(1, []);
       return;
     }
@@ -117,8 +117,8 @@ class OptionModel {
       try {
         let option = JSON.parse(reader.result);
         if (callback){
-          if (option['options']) {
-            callback(0, option['options']);
+          if (option["options"]) {
+            callback(0, option["options"]);
           }else{
             callback(1, []);
           }
@@ -127,7 +127,7 @@ class OptionModel {
       catch (e) {
         if (callback) callback(1, []);
       }
-    }
+    };
     reader.readAsText(file);
   }
 
@@ -147,13 +147,13 @@ class OptionModel {
   saveOption() {
     let saveData = [];
     let isSave = false;
-    this.$itemList.find('li').each(function(){
+    this.$itemList.find("li").each(function(){
       let $list = $(this);
-      let isRegexp = $list.find('.use-regexp').prop('checked') ? 1 : 0;
-      let urlPattern = $list.find('.url-pattern').val();
-      let backgroundColor = $list.find('.background-color').val();
-      let text = $list.find('.text').val();
-      let textColor = $list.find('.text-color').val();
+      let isRegexp = $list.find(".use-regexp").prop("checked") ? 1 : 0;
+      let urlPattern = $list.find(".url-pattern").val();
+      let backgroundColor = $list.find(".background-color").val();
+      let text = $list.find(".text").val();
+      let textColor = $list.find(".text-color").val();
 
       isSave = true;
       saveData.push({
@@ -181,7 +181,7 @@ class OptionModel {
   exportOptions() {
     this.downloadUrl = undefined;
     let options = this.loadOptions();
-    let optionsHash = {'options':options};
+    let optionsHash = {"options":options};
     let optionsJson = JSON.stringify(optionsHash);
     optionsJson = optionsJson.replace(/{/g, "\n{\n");
     optionsJson = optionsJson.replace(/}/g, "\n}\n");
@@ -195,7 +195,7 @@ class OptionModel {
 class OptionView{
   constructor(m) {
     this.m = m;
-    this.m.$itemList = $('#item-list');
+    this.m.$itemList = $("#item-list");
     this.m.itemHtml = this.itemHtml_();
     this.initOption(this.m.loadOptions(), false);
   }
@@ -205,22 +205,22 @@ class OptionView{
     let len = options.length;
 
     if (len > 0) {
-      this.m.$itemList.find('li').remove();
+      this.m.$itemList.find("li").remove();
       for (let i = 0; i < len; i++) {
         let item = options[len - i -1];
-        this.addItem(false, isBindeColor, item['background_color'], item['text_color']);
+        this.addItem(false, isBindeColor, item["background_color"], item["text_color"]);
       }
     }
 
     let count = 0;
-    this.m.$itemList.find('li').each(function(){
+    this.m.$itemList.find("li").each(function(){
       let $list = $(this);
       let item = options[count];
-      if (item['is_regexp'] === 1) $list.find('.use-regexp').prop('checked', true);
-      $list.find('.url-pattern').val(item['url_pattern']);
-      $list.find('.background-color').val(item['background_color']);
-      $list.find('.text').val(item['text']);
-      $list.find('.text-color').val(item['text_color']);
+      if (item["is_regexp"] === 1) $list.find(".use-regexp").prop("checked", true);
+      $list.find(".url-pattern").val(item["url_pattern"]);
+      $list.find(".background-color").val(item["background_color"]);
+      $list.find(".text").val(item["text"]);
+      $list.find(".text-color").val(item["text_color"]);
       count++;
     });
     this.m.itemCount = count;
@@ -228,32 +228,32 @@ class OptionView{
 
   disableButtons(isDisable) {
     if (isDisable === undefined) isDisable = false;
-    let $buttons = $('.button');
+    let $buttons = $(".button");
     $buttons.each((e) => {
-      $($buttons[e]).prop('disabled', isDisable);
+      $($buttons[e]).prop("disabled", isDisable);
     });
   }
 
   itemHtml_() {
-    let $item = $(this.m.$itemList.find('li')[0]);
+    let $item = $(this.m.$itemList.find("li")[0]);
     return $("<div>").append($item.clone()).html();
   }
 
   addItem(isAnimation, bindJsColor, backgroundColor, textColor) {
-    backgroundColor = backgroundColor || '000000';
+    backgroundColor = backgroundColor || "000000";
     this.m.$itemList.prepend(this.m.itemHtml);
-    let $target = this.m.$itemList.find('li:first-child');
+    let $target = this.m.$itemList.find("li:first-child");
     this.show_($target, isAnimation);
 
     if (bindJsColor) {
-      let $list = this.m.$itemList.find('li:first-child');
-      new jscolor($list.find('.background-color')[0], {value: backgroundColor});
-      new jscolor($list.find('.text-color')[0], {value: textColor});
+      let $list = this.m.$itemList.find("li:first-child");
+      new jscolor($list.find(".background-color")[0], {value: backgroundColor});
+      new jscolor($list.find(".text-color")[0], {value: textColor});
     }
   }
 
   removeItem(sender, callback) {
-    let $list = $(sender).parents('li');
+    let $list = $(sender).parents("li");
     this.hide_($list, true, 200, function(){
       $list.remove();
       if (callback) callback();
@@ -261,52 +261,52 @@ class OptionView{
   }
 
   resetFileInput() {
-    let $fileInput = $('#files').clone();
-    $('#files').remove();
-    $('#file').append($fileInput);
+    let $fileInput = $("#files").clone();
+    $("#files").remove();
+    $("#file").append($fileInput);
   }
 
   updateStateDeleteButton() {
     if (this.m.itemCount <= 1) {
-      $('button.delete-button').prop('disabled', true);
+      $("button.delete-button").prop("disabled", true);
     }else{
-      $('button.delete-button').prop('disabled', false);
+      $("button.delete-button").prop("disabled", false);
     }
   }
 
   showColorPreview(sender) {
-    let $list = $(sender).parents('li');
-    let backgroundColor = $list.find('.background-color').val();
-    let text = $list.find('.text').val();
-    let textColor = $list.find('.text-color').val();
+    let $list = $(sender).parents("li");
+    let backgroundColor = $list.find(".background-color").val();
+    let text = $list.find(".text").val();
+    let textColor = $list.find(".text-color").val();
 
-    let $target = $('div.andon-view');
-    $target.css('background-color', '#' + backgroundColor);
-    let $text = $target.find('span');
+    let $target = $("div.andon-view");
+    $target.css("background-color", "#" + backgroundColor);
+    let $text = $target.find("span");
     $text.text(text);
-    $text.css('color', '#' + textColor);
+    $text.css("color", "#" + textColor);
 
-    if ($target.css('display') === 'none' || $target.css('opacity') < 0.9) {
+    if ($target.css("display") === "none" || $target.css("opacity") < 0.9) {
       this.show_($target, true, 300);
     }
   }
 
   hideColorPreview(sender) {
-    let $target = $('div.andon-view');
+    let $target = $("div.andon-view");
     this.hide_($target, true, 300);
   }
 
   updateLatestUpdateTime(isAnimation) {
     let updateTime = this.m.updateTime();
-    let $update_time_text = $('#latest-updated-time');
+    let $update_time_text = $("#latest-updated-time");
     if (isAnimation) $update_time_text.hide().fadeIn();
     $update_time_text.text(updateTime);
   }
 
   downloadExportOptionFile() {
     let url = this.m.downloadUrl;
-    let fileName = 'andon_options.json';
-    var a = document.createElement('a');
+    let fileName = "andon_options.json";
+    var a = document.createElement("a");
     a.download = fileName;
     a.href = url;
     a.click();

@@ -7,9 +7,9 @@ class AndonEventDispatcher extends ChromeAPI{
 
   get EVENT() {
     return {
-      UPDATE_ANDON: 'eventUpdateAndon',
-      SHOW_ANDON: 'eventShowAndon',
-      HIDE_ANDON: 'eventHideAndon',
+      UPDATE_ANDON: "eventUpdateAndon",
+      SHOW_ANDON: "eventShowAndon",
+      HIDE_ANDON: "eventHideAndon",
     };
   }
 
@@ -44,11 +44,11 @@ class AndonEventDispatcher extends ChromeAPI{
 
   merge(a, b) {
     if (!a) return;
-    if (typeof a !=='object') return;
+    if (typeof a !=="object") return;
     if (!b) {
       b = {};
     }
-    if (typeof b !=='object') return;
+    if (typeof b !=="object") return;
 
     for (let attrname in b) {
       if (b.hasOwnProperty(attrname) && !a.hasOwnProperty(attrname)) {

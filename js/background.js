@@ -14,9 +14,9 @@ class Background {
     this.m.eventDispatcher.addEventListener((request, sender, sendResponse) => {
       let event = this.m.eventDispatcher.EVENT;
       switch(request.eventName) {
-        case event.UPDATE_ANDON:
-          this.m.dispatchEventUpdateWindow();
-          break;
+      case event.UPDATE_ANDON:
+        this.m.dispatchEventUpdateWindow();
+        break;
       }
     });
   }
@@ -31,8 +31,8 @@ class Background {
 class BackgroundModel {
   constructor() {
     this.IMAGE_PATH = {
-      browserActionOn:'images/icon048_on.png',
-      browserActionOff:'images/icon048_off.png',
+      browserActionOn:"images/icon048_on.png",
+      browserActionOff:"images/icon048_off.png",
     };
     this.eventDispatcher = new AndonEventDispatcher();
     this.localstorage = new AndonLocalstorage();
@@ -62,7 +62,7 @@ class BackgroundModel {
           this.dispatchEventHideAndon(tab);
         }
       }else{
-          this.dispatchEventHideAndon(tab);
+        this.dispatchEventHideAndon(tab);
       }
     });
   }
@@ -92,8 +92,8 @@ class BackgroundModel {
 
     for (let i = 0; i < len; i++) {
       let option = options[i];
-      let pattern = option['url_pattern'];
-      if (option['is_regexp'] === 0) {
+      let pattern = option["url_pattern"];
+      if (option["is_regexp"] === 0) {
         if (pattern.length >= 1 && url.indexOf(pattern) >= 0) {
           match.isMatch = 1;
           match.option = option;
@@ -101,7 +101,7 @@ class BackgroundModel {
         }
       }else{
         if (pattern.length >= 1){
-          let regexp = new RegExp(pattern, 'i');
+          let regexp = new RegExp(pattern, "i");
           if (regexp.test(url)) {
             match.isMatch = 1;
             match.option = option;

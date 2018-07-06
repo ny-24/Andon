@@ -1,0 +1,16 @@
+{
+  "name": "Andon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ny-24/Andon.git",
+  "author": "ny-24 <yoshida.naoto@mwed.co.jp>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0",
+    "prettier": "^1.13.7"
+  }
+}

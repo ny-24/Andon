@@ -12,12 +12,12 @@ class Contents {
     this.m.addEventListener((request, sender, sendResponse) => {
       let event = this.m.eventDispatcher.EVENT;
       switch(request.eventName) {
-        case event.SHOW_ANDON:
-          this.showAndon(request.option);
-          break;
-        case event.HIDE_ANDON:
-          this.hideAndon();
-          break;
+      case event.SHOW_ANDON:
+        this.showAndon(request.option);
+        break;
+      case event.HIDE_ANDON:
+        this.hideAndon();
+        break;
       }
     });
   }
@@ -65,23 +65,23 @@ class ContentsView {
 
   setOptino(option) {
     let $target = this.m.$target;
-    let backgroundColor = option['background_color'];
-    let text = option['text'];
-    let textColor = option['text_color'];
+    let backgroundColor = option["background_color"];
+    let text = option["text"];
+    let textColor = option["text_color"];
 
-    $target.css('background-color', '#' + backgroundColor);
-    let $text = $target.find('span');
+    $target.css("background-color", "#" + backgroundColor);
+    let $text = $target.find("span");
     $text.text(text);
-    $text.css('color', '#' + textColor);
+    $text.css("color", "#" + textColor);
   }
 
   addAndonView() {
     if (this.m.$target === undefined) {
-      let htmlText = '<div class="andon-view" style="display: none;">'+
-        '<span class="andon-text"></span>'+
-        '</div>';
-      $('body').append($(htmlText));
-      this.m.$target = $('div.andon-view');
+      let htmlText = "<div class=\"andon-view\" style=\"display: none;\">"+
+        "<span class=\"andon-text\"></span>"+
+        "</div>";
+      $("body").append($(htmlText));
+      this.m.$target = $("div.andon-view");
     }
   }
 }
